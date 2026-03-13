@@ -29,7 +29,7 @@ Code explanation: `docs/CODE_EXPLANATION.md`
 - `go_live_service.py`: Go Live business logic.
 - `app.py`: Home page.
 - `pages/1_Go_Live.py`: Live analysis page.
-- `tests/`: Automated tests.
+
 
 ## Local Setup
 1. Create and activate environment:
