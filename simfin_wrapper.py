@@ -124,8 +124,7 @@ class PySimFin:
 
         return []
 
-    @staticmethod
-    def _to_dataframe(records: list[dict], schema: dict[str, str]) -> pd.DataFrame:
+    def _to_dataframe(self, records: list[dict], schema: dict[str, str]) -> pd.DataFrame:
         if not records:
             return pd.DataFrame({column: pd.Series(dtype=dtype) for column, dtype in schema.items()})
 
@@ -151,8 +150,7 @@ class PySimFin:
         ]
         return frame[ordered_columns]
 
-    @staticmethod
-    def _share_price_schema() -> dict[str, str]:
+    def _share_price_schema(self) -> dict[str, str]:
         return {
             "Date": "string",
             "Ticker": "string",
@@ -165,8 +163,7 @@ class PySimFin:
             "Dividend": "float64",
         }
 
-    @staticmethod
-    def _financial_statement_schema() -> dict[str, str]:
+    def _financial_statement_schema(self) -> dict[str, str]:
         return {
             "Ticker": "string",
             "Report Date": "string",
