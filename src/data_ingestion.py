@@ -3,6 +3,7 @@ import os
 import simfin as sf
 import polars as pl
 from pathlib import Path
+import tomllib
 
 def main():
     print('\nStarting data ingestion...')
@@ -10,7 +11,7 @@ def main():
 
     print('\nLoading configuration...')
     try:
-        config_file_path = Path("config.toml")
+        config_file_path = Path("src/config.toml")
 
         with config_file_path.open("rb") as config_file:
             config = tomllib.load(config_file)
