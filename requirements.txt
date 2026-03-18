@@ -2,3 +2,7 @@ python>=3.11
 simfin
 polars
 python-dotenv
+xgboost
+scikit-learn
+pyarrow
+pandas
