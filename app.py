@@ -1,6 +1,9 @@
-import streamlit as st
+try:
+    import tomllib
+except ImportError:
+    import tomli as tomllib  # type: ignore[no-redef]
 
-from project_config import load_company_universe
+import streamlit as st
 
 st.set_page_config(page_title="Automated Daily Trading System", layout="wide")
 
@@ -33,10 +36,10 @@ st.write(
 
 st.subheader("Configured Company Universe")
 try:
-    configured_symbols = load_company_universe()
+    with open("src/config.toml", "rb") as f:
+        tickers = tomllib.load(f).get("tickers", [])
+    st.write(tickers)
 except Exception as exc:
-    st.error(f"Unable to load company universe from config.toml: {exc}")
-else:
-    st.write(configured_symbols)
+    st.error(f"Unable to load tickers from src/config.toml: {exc}")
 
 st.info("Navigate to `Go Live` in the left sidebar to run live predictions.")

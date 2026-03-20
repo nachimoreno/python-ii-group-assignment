@@ -1,0 +1,7 @@
+companies = ["AMAZON COM INC"]
+tickers = ["AMZN"]
+
+ETL_DIR = "ETL"
+BRONZE_DIR = "ETL/data/bronze"
+SILVER_DIR = "ETL/data/silver"
+GOLD_DIR = "ETL/data/gold"
