@@ -21,8 +21,11 @@ st.caption("Fetch live data from SimFin, apply ETL transformations, and view mod
 
 
 def resolve_api_key() -> str | None:
-    if "SIMFIN_API_KEY" in st.secrets and st.secrets["SIMFIN_API_KEY"]:
-        return str(st.secrets["SIMFIN_API_KEY"]).strip()
+    try:
+        if st.secrets.get("SIMFIN_API_KEY"):
+            return str(st.secrets["SIMFIN_API_KEY"]).strip()
+    except Exception:
+        pass
     key = os.environ.get("SIMFIN_API_KEY") or os.environ.get("API_KEY")
     return key.strip() if key else None
 

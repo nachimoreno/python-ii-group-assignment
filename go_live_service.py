@@ -18,6 +18,11 @@ def engineer_live_features(raw_data: pd.DataFrame) -> pd.DataFrame:
     Input is the raw DataFrame from PySimFin.get_share_prices().
     Returns the enriched DataFrame (price columns kept for display).
     """
+    numeric_cols = ["Open", "High", "Low", "Close", "Adj. Close", "Volume", "Shares Outstanding"]
+    for col in numeric_cols:
+        if col in raw_data.columns:
+            raw_data[col] = pd.to_numeric(raw_data[col], errors="coerce")
+
     lf = pl.from_pandas(raw_data).lazy().sort("Date")
 
     lf = lf.with_columns(
@@ -53,14 +58,17 @@ def engineer_live_features(raw_data: pd.DataFrame) -> pd.DataFrame:
         (pl.col("Momentum Pct. 20d") * pl.col("Volatility 20d")).tanh().alias("Interaction Momentum Volume 20d"),
     )
 
-    # Optional features that require Shares Outstanding
-    if "Shares Outstanding" in raw_data.columns:
+    # Optional features that require Shares Outstanding (only if data is available)
+    if "Shares Outstanding" in raw_data.columns and raw_data["Shares Outstanding"].notna().any():
         lf = lf.with_columns(
             (pl.col("Adj. Close") * pl.col("Shares Outstanding")).log().alias("Log Market Cap"),
             (pl.col("Shares Outstanding") / pl.col("Shares Outstanding").shift(1) - 1).alias("Delta Pct. Dilution / Issuance"),
         )
 
-    return lf.drop_nulls().collect().to_pandas()
+    # Drop columns that are never used as features (free-tier API returns them as all-null)
+    unused = ["Dividend", "Shares Outstanding"]
+    df = lf.collect().to_pandas()
+    return df.drop(columns=[c for c in unused if c in df.columns]).dropna()
 
 
 def build_go_live_result(raw_data: pd.DataFrame, predictor: Any) -> GoLiveResult:

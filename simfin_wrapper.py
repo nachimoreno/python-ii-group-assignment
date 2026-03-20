@@ -18,6 +18,18 @@ class PySimFinRequestError(PySimFinError):
     pass
 
 
+_PRICE_COLUMNS = {
+    "Opening Price": "Open",
+    "Highest Price": "High",
+    "Lowest Price": "Low",
+    "Last Closing Price": "Close",
+    "Adjusted Closing Price": "Adj. Close",
+    "Trading Volume": "Volume",
+    "Dividend Paid": "Dividend",
+    "Common Shares Outstanding": "Shares Outstanding",
+}
+
+
 class PySimFin:
     """Python wrapper for the SimFin REST API v3."""
 
@@ -31,7 +43,7 @@ class PySimFin:
     def get_share_prices(self, ticker: str, start: str, end: str) -> pd.DataFrame:
         try:
             response = requests.get(
-                f"{self.BASE_URL}/companies/prices",
+                f"{self.BASE_URL}/companies/prices/compact",
                 headers=self.headers,
                 params={"ticker": ticker.upper(), "start": start, "end": end},
             )
@@ -47,12 +59,13 @@ class PySimFin:
 
         payload = response.json()
         item = payload[0]
-        return pd.DataFrame(item["data"], columns=item["columns"])
+        df = pd.DataFrame(item["data"], columns=item["columns"])
+        return df.rename(columns=_PRICE_COLUMNS)
 
     def get_financial_statement(self, ticker: str, start: str, end: str) -> pd.DataFrame:
         try:
             response = requests.get(
-                f"{self.BASE_URL}/companies/statements",
+                f"{self.BASE_URL}/companies/statements/compact",
                 headers=self.headers,
                 params={"ticker": ticker.upper(), "start": start, "end": end, "statements": "pl"},
             )

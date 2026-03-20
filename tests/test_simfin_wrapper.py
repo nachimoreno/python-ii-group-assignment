@@ -32,7 +32,7 @@ def test_request_sends_auth_header_and_params(monkeypatch):
     client = PySimFin(api_key="test-key")
     client.get_share_prices(ticker="AAPL", start="2024-01-01", end="2024-01-31")
 
-    assert "companies/prices" in captured["url"]
+    assert "companies/prices/compact" in captured["url"]
     assert captured["headers"]["Authorization"] == "api-key test-key"
     assert captured["params"] == {"ticker": "AAPL", "start": "2024-01-01", "end": "2024-01-31"}
 
