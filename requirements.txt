@@ -1,6 +1,4 @@
 pandas==2.2.3
-llvm-openmp
-charset-normalizer
 simfin
 polars
 python-dotenv
