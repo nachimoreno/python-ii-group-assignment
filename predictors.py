@@ -24,13 +24,6 @@ class ModelUnavailableError(RuntimeError):
 
 
 class MockPredictor:
-    """Simple rule-based predictor for development and testing when no model is trained.
-
-    Uses Log Return (the first feature computed by the Part 1 ETL pipeline):
-    - Log Return >  +neutral_band  ->  BUY  (UP)
-    - Log Return <  -neutral_band  ->  SELL (DOWN)
-    - otherwise                    ->  HOLD (STABLE)
-    """
 
     def __init__(self, neutral_band: float = 0.0) -> None:
         self.neutral_band = neutral_band
