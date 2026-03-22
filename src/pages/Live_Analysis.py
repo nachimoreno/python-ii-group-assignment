@@ -17,7 +17,7 @@ companies_dict = {
 
 st.set_page_config(page_title="Live Analysis", layout="wide")
 st.title("Live Analysis")
-st.caption("Fetch live data from SimFin, apply ETL transformations, and view model signals.")
+st.caption("Fetch live data from SimFin, apply ETL transformations, view model signals, and view backtest results.")
 
 default_end = date.today()
 default_start = default_end - timedelta(days=120)
@@ -68,10 +68,10 @@ try:
 
         transformed_data = transform_share_prices(raw_data)
 
-        if not analysis_run:
-            st.header("Latest Data")
-            st.dataframe(raw_data)
-        else:
+        st.header("Latest Data")
+        st.dataframe(raw_data)
+            
+        if analysis_run:
             st.header("Analysis Results")
             predictions_df = predict_company_classification(
                 input_dataframe=transformed_data,
@@ -90,9 +90,7 @@ try:
 
             market_sentiment = raw_data_with_predictions['Prediction'].mean()
 
-            st.dataframe(raw_data_with_predictions.drop(columns=['Prediction']))
-
-            st.header("Market Sentiment")
+            st.subheader("Market Sentiment")
             col1, col2 = st.columns(2)
 
             is_bullish = market_sentiment > 0.5
@@ -106,6 +104,9 @@ try:
                 if is_bullish
                 else f"({(0.5 - market_sentiment)*2:.2%} bias towards bearish)"
             )
+
+            st.subheader("Predictions")
+            st.dataframe(raw_data_with_predictions.drop(columns=['Prediction']))
 
             with col1:
                 st.markdown(
@@ -185,6 +186,7 @@ try:
                 st.metric("Sell Trades", backtest_summary["sell_trades"])
                 st.metric("Hold Days", backtest_summary["hold_days"])
 
+            st.subheader("Backtest Trading Actions Log")
             st.dataframe(backtest_dataframe)
 
 except Exception as exc:

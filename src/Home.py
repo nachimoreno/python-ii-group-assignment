@@ -43,7 +43,5 @@ def main():
     except Exception as exc:
         st.error(f"app.py: Unable to load tickers from src/config.toml: {exc}")
 
-    st.info("Navigate to `Go Live` in the left sidebar to run live predictions.")
-
 if __name__ == "__main__":
     main()

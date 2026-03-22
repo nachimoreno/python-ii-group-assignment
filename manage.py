@@ -4,7 +4,7 @@ import src.data_cleaning as data_cleaning
 import src.feature_engineering as feature_engineering
 import src.model_training as model_training
 import src.trading_logic as trading_logic
-import src.app as app
+import src.Home as app
 import os
 
 def main():
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     elif args.stage == 'trading_logic':
         trading_logic.main()
     elif args.stage == 'app':
-        os.system('streamlit run src/app.py')
+        os.system('streamlit run src/Home.py')
     elif args.stage == 'all':
         main()
     else:
