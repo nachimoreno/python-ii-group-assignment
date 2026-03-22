@@ -1,7 +1,0 @@
-pandas==2.2.3
-simfin
-polars
-python-dotenv
-xgboost
-scikit-learn
-pyarrow

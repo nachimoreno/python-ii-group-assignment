@@ -15,18 +15,22 @@ This repository is organized as a sequential pipeline. At a high level, it:
 The project is split into five executable stages:
 
 ### 1. Data ingestion
+
 `data_ingestion.py` loads configuration, reads your SimFin API key from the environment, downloads U.S. company metadata plus daily share-price data, and writes raw parquet files into the bronze layer. Its main outputs are:
 
 - `BRONZE_DIR/parquet/companies.parquet`
 - `BRONZE_DIR/parquet/share_prices.parquet`
 
 ### 2. Data cleaning
+
 `data_cleaning.py` reads the raw parquet files, selects only the companies defined in `src/config.toml`, removes unneeded columns, and writes one cleaned parquet file per configured company into the silver layer.
 
 ### 3. Feature engineering
+
 `feature_engineering.py` reads each cleaned company dataset and builds model-ready features such as returns, rolling volatility, moving-average style signals, momentum, volume features, interaction terms, and next-period targets. The outputs are written as modeled parquet files in the gold layer.
 
 ### 4. Model training
+
 `model_training.py` trains two XGBoost models per company:
 
 - a classifier for next-period direction, and
@@ -35,6 +39,7 @@ The project is split into five executable stages:
 It uses a chronological holdout split and time-series cross-validation during tuning, then saves fitted models and metadata under the trained-models directory.
 
 ### 5. Trading logic / backtesting
+
 `trading_logic.py` loads the trained models and engineered datasets, produces holdout-period trading signals, simulates a simple trading strategy, and saves both detailed backtest logs and summary reports.
 
 ## Why `manage.py` is the main entrypoint
@@ -72,9 +77,11 @@ The repository requires Python 3.11 and includes the following Python dependenci
 Before executing the pipeline, make sure these are in place:
 
 ### 1. `src/config.toml`
+
 This file is used across the pipeline for directory paths, and several stages also depend on a configured `companies` list.
 
 ### 2. SimFin API key
+
 `data_ingestion.py` expects an environment variable named `API_KEY`. The easiest setup is to place it in a `.env` file at the project root:
 
 ```env
@@ -90,51 +97,8 @@ Some required libraries are installed through `pip`, so the recommended conda-ba
 ### Create and activate the conda environment
 
 ```bash
-conda create -n ml-stock-pricing python=3.11 -y
-conda activate ml-stock-pricing
-```
-
-### Upgrade packaging tools
-
-```bash
-python -m pip install --upgrade pip setuptools wheel
-```
-
-### Install dependencies with pip
-
-```bash
-pip install -r requirements.txt
-```
-
-
-## Installation option 2: standard `.venv`
-
-### Create and activate the virtual environment
-
-On macOS / Linux:
-
-```bash
-python3.11 -m venv .venv
-source .venv/bin/activate
-```
-
-On Windows PowerShell:
-
-```powershell
-py -3.11 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-### Upgrade packaging tools
-
-```bash
-python -m pip install --upgrade pip setuptools wheel
-```
-
-### Install project dependencies
-
-```bash
-pip install -r requirements.txt
+conda env create -f environment.yml
+conda activate python_ii_group_assignment
 ```
 
 ## Running the project with `manage.py`
@@ -263,12 +227,15 @@ python manage.py --stage all
 ## Troubleshooting notes
 
 ### Missing API key
+
 If ingestion fails early, verify that your `.env` file exists and that `API_KEY` is set correctly. The ingestion stage depends on that environment variable for SimFin access.
 
 ### Running a later stage directly
+
 If you run `model_training` or `trading_logic` before upstream artifacts exist, the stage will fail because `manage.py` does not build missing dependencies automatically.
 
 ### Company naming consistency
+
 Several stages assume the configured company names in `config.toml` match the source data exactly, and multiple outputs are written per company. Keep naming consistent across configuration and generated files. Please ensure that the company names in `config.toml` are spelled exactly as they appear in the SIMFIN API endpoint.
 
 ## Summary

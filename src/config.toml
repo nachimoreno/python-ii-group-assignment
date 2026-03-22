@@ -1,4 +1,5 @@
 companies = ["AMAZON COM INC", "MICROSOFT CORP", "APPLE INC", "AAON INC", "ALLSTATE CORP"]
+tickers = ["AMZN", "MSFT", "AAPL", "AAON", "ALL"]
 
 ETL_DIR = "ETL"
 BRONZE_DIR = "ETL/data/bronze"
