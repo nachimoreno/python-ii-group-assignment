@@ -12,6 +12,8 @@ documents = {
     "Feature Engineering": "docs/feature_engineering.md",
     "Model Training": "docs/model_training.md",
     "Backtesting": "docs/trading_logic.md",
+    "PySimFin (API Wrapper)": "docs/PySimFin.md",
+    "Live Analysis": "docs/live_analysis.md",
 }
 
 col1, col2 = st.columns([1, 3])
