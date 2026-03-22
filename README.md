@@ -59,19 +59,6 @@ The execution order baked into `manage.py` is:
 
 That makes `manage.py` the recommended way to run the project.
 
-## Requirements
-
-The repository requires Python 3.11 and includes the following Python dependencies in `requirements.txt`:
-
-- `pandas==2.2.3`
-- `simfin`
-- `polars`
-- `python-dotenv`
-- `xgboost`
-- `scikit-learn`
-- `pyarrow`
-- plus supporting packages such as `charset-normalizer` and `llvm-openmp`.
-
 ## Configuration before running
 
 Before executing the pipeline, make sure these are in place:
@@ -90,9 +77,7 @@ API_KEY=your_simfin_api_key_here
 
 `python-dotenv` is included in the requirements, and the ingestion stage depends on that key being present and valid.
 
-## Installation option 1: conda environment + pip dependencies
-
-Some required libraries are installed through `pip`, so the recommended conda-based setup is to create the environment with the correct Python version first, then install the project dependencies from `requirements.txt` using `pip`.
+## Environment Setup
 
 ### Create and activate the conda environment
 
