@@ -4,7 +4,6 @@ import src.data_cleaning as data_cleaning
 import src.feature_engineering as feature_engineering
 import src.model_training as model_training
 import src.trading_logic as trading_logic
-import src.Home as app
 import os
 
 def main():
@@ -13,7 +12,7 @@ def main():
     feature_engineering.main()
     model_training.main()
     trading_logic.main()
-    app.main()
+    os.system('streamlit run src/Home.py')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Stock Pricing Predictions System')

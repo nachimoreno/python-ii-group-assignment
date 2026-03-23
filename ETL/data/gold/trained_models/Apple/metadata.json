@@ -1,0 +1,99 @@
+{
+  "company": "APPLE INC",
+  "feature_columns": [
+    "Log Return",
+    "Log Return 5d",
+    "Volatility 5d",
+    "Momentum Pct. 5d",
+    "Log Volume Ratio 5d",
+    "Log MA Ratio 5d",
+    "Log Return 10d",
+    "Volatility 10d",
+    "Momentum Pct. 10d",
+    "Log Volume Ratio 10d",
+    "Log MA Ratio 10d",
+    "Log Return 20d",
+    "Volatility 20d",
+    "Momentum Pct. 20d",
+    "Log Volume Ratio 20d",
+    "Log MA Ratio 20d",
+    "Intraday Pct. Return",
+    "Range Pct.",
+    "Close Position",
+    "Log Volume Change",
+    "Log Market Cap",
+    "Delta Pct. Dilution / Issuance",
+    "Interaction Return Volume 5d",
+    "Interaction Return Volume 10d",
+    "Interaction Return Volume 20d",
+    "Interaction Volatility Volume 5d",
+    "Interaction Volatility Volume 10d",
+    "Interaction Volatility Volume 20d",
+    "Interaction Momentum Volatility 5d",
+    "Interaction Momentum Volume 10d",
+    "Interaction Momentum Volume 20d"
+  ],
+  "target_classification": "Target Return Class",
+  "target_regression": "Target Return Metric",
+  "classification_metrics": {
+    "best_cv_score": 0.5284354062203469,
+    "best_params": {
+      "subsample": 1.0,
+      "reg_lambda": 0.5,
+      "reg_alpha": 1.0,
+      "n_estimators": 800,
+      "min_child_weight": 1,
+      "max_depth": 4,
+      "learning_rate": 0.05,
+      "gamma": 0.1,
+      "colsample_bytree": 0.9
+    },
+    "test_roc_auc": 0.5550349650349651,
+    "test_accuracy": 0.48148148148148145,
+    "classification_report": {
+      "0": {
+        "precision": 0.4336734693877551,
+        "recall": 0.85,
+        "f1-score": 0.5743243243243243,
+        "support": 100.0
+      },
+      "1": {
+        "precision": 0.6808510638297872,
+        "recall": 0.22377622377622378,
+        "f1-score": 0.3368421052631579,
+        "support": 143.0
+      },
+      "accuracy": 0.48148148148148145,
+      "macro avg": {
+        "precision": 0.5572622666087712,
+        "recall": 0.5368881118881119,
+        "f1-score": 0.4555832147937411,
+        "support": 243.0
+      },
+      "weighted avg": {
+        "precision": 0.5791318891622843,
+        "recall": 0.48148148148148145,
+        "f1-score": 0.434571413518782,
+        "support": 243.0
+      }
+    }
+  },
+  "regression_metrics": {
+    "best_cv_score": -0.0003078957791238992,
+    "best_params": {
+      "subsample": 0.9,
+      "reg_lambda": 2.0,
+      "reg_alpha": 0.0,
+      "n_estimators": 400,
+      "min_child_weight": 1,
+      "max_depth": 8,
+      "learning_rate": 0.1,
+      "gamma": 0.3,
+      "colsample_bytree": 0.9
+    },
+    "test_mae": 0.011228857826410586,
+    "test_mse": 0.00024205624037930401,
+    "test_rmse": 0.015558156715347228,
+    "test_r2": -0.0005394639924964917
+  }
+}

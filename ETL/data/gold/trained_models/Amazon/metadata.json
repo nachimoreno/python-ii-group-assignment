@@ -1,0 +1,99 @@
+{
+  "company": "AMAZON COM INC",
+  "feature_columns": [
+    "Log Return",
+    "Log Return 5d",
+    "Volatility 5d",
+    "Momentum Pct. 5d",
+    "Log Volume Ratio 5d",
+    "Log MA Ratio 5d",
+    "Log Return 10d",
+    "Volatility 10d",
+    "Momentum Pct. 10d",
+    "Log Volume Ratio 10d",
+    "Log MA Ratio 10d",
+    "Log Return 20d",
+    "Volatility 20d",
+    "Momentum Pct. 20d",
+    "Log Volume Ratio 20d",
+    "Log MA Ratio 20d",
+    "Intraday Pct. Return",
+    "Range Pct.",
+    "Close Position",
+    "Log Volume Change",
+    "Log Market Cap",
+    "Delta Pct. Dilution / Issuance",
+    "Interaction Return Volume 5d",
+    "Interaction Return Volume 10d",
+    "Interaction Return Volume 20d",
+    "Interaction Volatility Volume 5d",
+    "Interaction Volatility Volume 10d",
+    "Interaction Volatility Volume 20d",
+    "Interaction Momentum Volatility 5d",
+    "Interaction Momentum Volume 10d",
+    "Interaction Momentum Volume 20d"
+  ],
+  "target_classification": "Target Return Class",
+  "target_regression": "Target Return Metric",
+  "classification_metrics": {
+    "best_cv_score": 0.5469597599740941,
+    "best_params": {
+      "subsample": 0.9,
+      "reg_lambda": 0.5,
+      "reg_alpha": 0.0,
+      "n_estimators": 200,
+      "min_child_weight": 5,
+      "max_depth": 6,
+      "learning_rate": 0.05,
+      "gamma": 0.3,
+      "colsample_bytree": 0.7
+    },
+    "test_roc_auc": 0.46732203389830507,
+    "test_accuracy": 0.46502057613168724,
+    "classification_report": {
+      "0": {
+        "precision": 0.45774647887323944,
+        "recall": 0.5508474576271186,
+        "f1-score": 0.5,
+        "support": 118.0
+      },
+      "1": {
+        "precision": 0.4752475247524752,
+        "recall": 0.384,
+        "f1-score": 0.4247787610619469,
+        "support": 125.0
+      },
+      "accuracy": 0.46502057613168724,
+      "macro avg": {
+        "precision": 0.46649700181285736,
+        "recall": 0.4674237288135593,
+        "f1-score": 0.46238938053097345,
+        "support": 243.0
+      },
+      "weighted avg": {
+        "precision": 0.46674907449013026,
+        "recall": 0.46502057613168724,
+        "f1-score": 0.46130594704832656,
+        "support": 243.0
+      }
+    }
+  },
+  "regression_metrics": {
+    "best_cv_score": -0.0006303643683944005,
+    "best_params": {
+      "subsample": 0.7,
+      "reg_lambda": 2.0,
+      "reg_alpha": 0.01,
+      "n_estimators": 200,
+      "min_child_weight": 7,
+      "max_depth": 4,
+      "learning_rate": 0.05,
+      "gamma": 0.3,
+      "colsample_bytree": 1.0
+    },
+    "test_mae": 0.013731131540928214,
+    "test_mse": 0.0003222283779799559,
+    "test_rmse": 0.01795072082062322,
+    "test_r2": -1.9566209218169206e-05
+  }
+}

@@ -4,5 +4,4 @@
 *.zip
 *.parquet
 *.pyc
-*.pkl
-*.json
+ETL/data/gold/backtests/*

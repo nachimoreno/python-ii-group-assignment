@@ -1,0 +1,99 @@
+{
+  "company": "ALLSTATE CORP",
+  "feature_columns": [
+    "Log Return",
+    "Log Return 5d",
+    "Volatility 5d",
+    "Momentum Pct. 5d",
+    "Log Volume Ratio 5d",
+    "Log MA Ratio 5d",
+    "Log Return 10d",
+    "Volatility 10d",
+    "Momentum Pct. 10d",
+    "Log Volume Ratio 10d",
+    "Log MA Ratio 10d",
+    "Log Return 20d",
+    "Volatility 20d",
+    "Momentum Pct. 20d",
+    "Log Volume Ratio 20d",
+    "Log MA Ratio 20d",
+    "Intraday Pct. Return",
+    "Range Pct.",
+    "Close Position",
+    "Log Volume Change",
+    "Log Market Cap",
+    "Delta Pct. Dilution / Issuance",
+    "Interaction Return Volume 5d",
+    "Interaction Return Volume 10d",
+    "Interaction Return Volume 20d",
+    "Interaction Volatility Volume 5d",
+    "Interaction Volatility Volume 10d",
+    "Interaction Volatility Volume 20d",
+    "Interaction Momentum Volatility 5d",
+    "Interaction Momentum Volume 10d",
+    "Interaction Momentum Volume 20d"
+  ],
+  "target_classification": "Target Return Class",
+  "target_regression": "Target Return Metric",
+  "classification_metrics": {
+    "best_cv_score": 0.5146584897151717,
+    "best_params": {
+      "subsample": 0.8,
+      "reg_lambda": 2.0,
+      "reg_alpha": 0.1,
+      "n_estimators": 200,
+      "min_child_weight": 5,
+      "max_depth": 8,
+      "learning_rate": 0.1,
+      "gamma": 1.0,
+      "colsample_bytree": 0.8
+    },
+    "test_roc_auc": 0.511413043478261,
+    "test_accuracy": 0.5102880658436214,
+    "classification_report": {
+      "0": {
+        "precision": 0.47674418604651164,
+        "recall": 0.3565217391304348,
+        "f1-score": 0.4079601990049751,
+        "support": 115.0
+      },
+      "1": {
+        "precision": 0.5286624203821656,
+        "recall": 0.6484375,
+        "f1-score": 0.5824561403508772,
+        "support": 128.0
+      },
+      "accuracy": 0.5102880658436214,
+      "macro avg": {
+        "precision": 0.5027033032143386,
+        "recall": 0.5024796195652174,
+        "f1-score": 0.49520816967792614,
+        "support": 243.0
+      },
+      "weighted avg": {
+        "precision": 0.504092062568996,
+        "recall": 0.5102880658436214,
+        "f1-score": 0.4998757565863556,
+        "support": 243.0
+      }
+    }
+  },
+  "regression_metrics": {
+    "best_cv_score": -0.0002966362801829957,
+    "best_params": {
+      "subsample": 0.9,
+      "reg_lambda": 0.5,
+      "reg_alpha": 0.01,
+      "n_estimators": 800,
+      "min_child_weight": 7,
+      "max_depth": 5,
+      "learning_rate": 0.1,
+      "gamma": 0.1,
+      "colsample_bytree": 1.0
+    },
+    "test_mae": 0.011302399429141312,
+    "test_mse": 0.0002218275444644075,
+    "test_rmse": 0.014893876072547652,
+    "test_r2": -5.4168870842197236e-05
+  }
+}
