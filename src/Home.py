@@ -17,14 +17,6 @@ def main():
         """
     )
 
-    st.subheader("Team")
-    st.write(
-        """
-        - Add team members in this section before final submission.
-        - Each member should be able to explain both Part 1 and Part 2 modules in the live Q&A.
-        """
-    )
-
     st.subheader("System Purpose")
     st.write(
         """
@@ -32,6 +24,35 @@ def main():
         - Reuse the ETL transformation logic developed for Part 1.
         - Generate one-day-ahead movement signals in a browser-based UI.
         - Prepare the app for public deployment on Streamlit Cloud.
+        """
+    )
+
+    st.subheader("Pipeline")
+    col1, col2, col3, col4, col5 = st.columns(5)
+
+    with col1:
+        st.write("Data Ingestion")
+        st.write("- Ingest data from SimFin for all companies in the config file.")
+    with col2:
+        st.write("Data Cleaning")
+        st.write("- Clean and narrow the raw market data by selecting only the configured companies, removing unneeded columns, and saving one cleaned parquet file per company for downstream processing.")
+    with col3:
+        st.write("Feature Engineering")
+        st.write("- Transform cleaned share-price data into features suitable for machine learning.")
+    with col4:
+        st.write("Model Training")
+        st.write("- Train a binary classifier and regression model to predict next-day movement using the engineered features.")
+    with col5:
+        st.write("Backtesting")
+        st.write("- Run a simple backtest on the model’s predictions to simulate trading performance.")
+
+    st.subheader("Live App Functionality")
+    st.write(
+        """
+        - Retrieve financial data from SimFin through an object-oriented Python wrapper.
+        - Reuse the ETL transformation logic developed for Part 1.
+        - Generate movement signals based on classification model.
+        - View trading signals and backtest results for selected date range and company.
         """
     )
 
